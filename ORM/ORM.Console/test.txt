@@ -1,0 +1,19 @@
+class Person
+{
+    int Age;
+    int BirthYear;
+    string FirstName;
+    string LastName;
+    string other;
+}
+
+class Result
+{
+    int Age;
+    string FullName;
+}
+
+Person.where(x => x.Age > 18 && x.BirthYear == 2000).select(x => new Result{
+    Age = x.Age,
+    FullName = x.LastName + "," + x.FirstName,
+});
