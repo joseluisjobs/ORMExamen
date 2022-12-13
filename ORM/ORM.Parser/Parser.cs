@@ -24,19 +24,27 @@ namespace ORM.Parser
 
         private void Code()
         {
-            ClassDecls();
+            FirtClassDecls();
             Stmts();
+        }
+        public void FirtClassDecls()
+        {
+            ClassDecl();
+            ClassDecls();
         }
         private void ClassDecls()
         {
-            var token = this._lookAhead.TokenType;
-            if (token == TokenType.ClassKeyword)
+            if (TokenType.ClassKeyword == this._lookAhead.TokenType)
             {
+                ClassDecl();
+                ClassDecls();
+            }
+        }
+        private void ClassDecl()
+        {
                 Match(TokenType.ClassKeyword);
                 Match(TokenType.Identifier);
                 Block();
-                ClassDecls();
-            }
         }
         private void Stmts()
         {
